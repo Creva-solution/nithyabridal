@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../assets/nithya.png';
+import logoImg from '../assets/nithya.webp';
 
 const LoadingScreen = () => {
     const [isMobile, setIsMobile] = useState(() =>

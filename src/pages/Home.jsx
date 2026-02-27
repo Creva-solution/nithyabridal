@@ -6,9 +6,9 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.jsx';
 import { supabase } from '../lib/supabaseClient';
 
-import hero1 from '../assets/hero1.jpg';
-import hero2 from '../assets/hero2.png';
-import hero3 from '../assets/hero3.jpg';
+import hero1 from '../assets/hero1.webp';
+import hero2 from '../assets/hero2.webp';
+import hero3 from '../assets/hero3.webp';
 import hero4 from '../assets/hero4.webp';
 
 const heroImages = [hero1, hero2, hero3, hero4];
@@ -22,7 +22,7 @@ const LazyYoutube = ({ videoId }) => {
             {isInView ? (
                 <iframe
                     className="w-full h-full object-cover rounded-2xl bg-black animate-[fadeIn_1s_ease-out]"
-                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1&rel=0`}
+                    src={`https://www.youtube.com/embed/${videoId}?controls=1&modestbranding=1&rel=0`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

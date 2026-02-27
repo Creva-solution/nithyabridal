@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/Animations.jsx';
 import { Award, CheckCircle2, Sparkles, BookOpen, Users, Clock, Briefcase, GraduationCap, ArrowRight, Quote, Star, ChevronLeft, ChevronRight, X, Crown } from 'lucide-react';
 
-import heroBg from '../assets/hero3.jpg';
-import course1 from '../assets/hero1.jpg';
+import heroBg from '../assets/hero3.webp';
+import course1 from '../assets/hero1.webp';
 import course2 from '../assets/hero4.webp';
-import course3 from '../assets/hero2.png';
+import course3 from '../assets/hero2.webp';
 
 // Swiper component imports
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -191,7 +191,7 @@ const Academy = () => {
             </section>
 
             {/* 5. Skills Section */}
-            <section className="py-24 px-6 bg-[url('../assets/hero1.jpg')] bg-fixed bg-cover bg-center relative">
+            <section className="py-24 px-6 bg-[url('../assets/hero1.webp')] bg-fixed bg-cover bg-center relative">
                 <div className="absolute inset-0 bg-black/90 md:bg-black/85"></div>
                 <div className="container mx-auto max-w-5xl relative z-10">
                     <div className="flex flex-col lg:flex-row gap-16 items-center">

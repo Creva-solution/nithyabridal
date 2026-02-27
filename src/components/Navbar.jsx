@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import logoImg from '../assets/nithya.png';
+import logoImg from '../assets/nithya.webp';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -98,16 +98,16 @@ const Navbar = () => {
                                     layoutId="main-logo"
                                     src={logoImg}
                                     alt="logo"
-                                    className={`relative z-10 block w-auto object-contain transition-all duration-300 ${isScrolled
-                                        ? 'h-[28px] xl:h-[34px]'
-                                        : 'h-[36px] xl:h-[44px]'
+                                    className={`relative z-10 block w-auto flex-shrink-0 object-contain transition-all duration-300 ${isScrolled
+                                        ? 'h-[28px] min-w-[28px] xl:h-[34px] xl:min-w-[34px]'
+                                        : 'h-[36px] min-w-[36px] xl:h-[44px] xl:min-w-[44px]'
                                         }`}
                                 />
                             </div>
 
                             {/* Text */}
                             <span
-                                className={`text-[#D4AF37] font-serif font-bold leading-none whitespace-nowrap transition-all duration-300 ml-[2px] ${isScrolled
+                                className={`text-[#D4AF37] flex-shrink-0 font-serif font-bold leading-none whitespace-nowrap transition-all duration-300 ml-[2px] ${isScrolled
                                     ? 'text-[16px] xl:text-[20px]'
                                     : 'text-[18px] xl:text-[24px]'
                                     }`}
@@ -171,11 +171,11 @@ const Navbar = () => {
                                 layoutId="main-logo"
                                 src={logoImg}
                                 alt="logo"
-                                className={`relative z-10 block w-auto object-contain ${isScrolled ? 'h-[28px]' : 'h-[34px]'}`}
+                                className={`relative z-10 block w-auto flex-shrink-0 object-contain ${isScrolled ? 'h-[28px] min-w-[28px]' : 'h-[34px] min-w-[34px]'}`}
                             />
                         </div>
                         <span
-                            className={`text-[#D4AF37] font-serif font-bold leading-none whitespace-nowrap ml-[2px] ${isScrolled ? 'text-[14px]' : 'text-[16px]'
+                            className={`text-[#D4AF37] flex-shrink-0 font-serif font-bold leading-none whitespace-nowrap ml-[2px] ${isScrolled ? 'text-[14px]' : 'text-[16px]'
                                 }`}
                         >
                             Nithya Studio

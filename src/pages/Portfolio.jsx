@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FadeIn } from '../components/Animations.jsx';
 import { supabase } from '../lib/supabaseClient';
-import heroImage from '../assets/hero-hindu.png';
+import heroImage from '../assets/hero-hindu.webp';
 
 const Portfolio = () => {
     const [portfolioItems, setPortfolioItems] = useState([]);

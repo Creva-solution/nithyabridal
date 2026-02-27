@@ -89,7 +89,7 @@ const AdminVideos = () => {
                     {videos.map((video) => (
                         <div key={video.id} className="bg-[#0a0a0a] border border-luxury-gold/20 rounded-xl overflow-hidden shadow-lg group">
                             <div className="aspect-video relative overflow-hidden bg-black flex items-center justify-center">
-                                <img src={`https://img.youtube.com/vi/${video.video_id}/maxresdefault.jpg`} alt="Video Thumbnail" className="w-full h-full object-cover" onError={(e) => { e.target.src = `https://img.youtube.com/vi/${video.video_id}/hqdefault.jpg`; }} />
+                                <img src={`https://img.youtube.com/vi/${video.video_id}/maxresdefault.webp`} alt="Video Thumbnail" className="w-full h-full object-cover" onError={(e) => { e.target.src = `https://img.youtube.com/vi/${video.video_id}/hqdefault.webp`; }} />
                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors pointer-events-none">
                                     <Youtube className="w-12 h-12 text-luxury-gold drop-shadow-lg" />
                                 </div>
