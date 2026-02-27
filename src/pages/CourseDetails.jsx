@@ -22,7 +22,7 @@ const Accordion = ({ title, items, defaultOpen = false }) => {
                 <div className="p-4 md:p-8 border-t border-luxury-gold/10">
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                         {items.map((item, idx) => (
-                            <li key={idx} className="flex gap-2.5 md:gap-3 text-luxury-nude/80 font-light text-[13px] md:text-base leading-snug md:leading-relaxed">
+                            <li key={idx} className={`flex gap-2.5 md:gap-3 text-luxury-nude/80 font-light text-[13px] md:text-base leading-snug md:leading-relaxed ${items.length % 2 !== 0 && idx === items.length - 1 ? 'md:col-start-2' : ''}`}>
                                 <span className="text-luxury-gold shrink-0 mt-0.5 md:mt-1 text-xs">✦</span>
                                 <span>{item}</span>
                             </li>
@@ -50,7 +50,7 @@ const CourseDetails = () => {
         },
         {
             title: "Category 4: Bridal Look Training",
-            items: ['Look 1 – Bridal', 'Look 2 – Reception', 'Look 3 – Haldi', 'Look 4 – Christian/Muslim/Brahmin option', 'Look 5 – Groom makeup', 'Look 6 – SFX makeup', 'Look 7 – Self grooming', 'Look 8 – Bridesmaid makeup']
+            items: ['Look 1 – Bridal', 'Look 2 – Reception', 'Look 3 – Celebrity makeup', 'Look 4 – Christian/Muslim/Brahmin option', 'Look 5 – Groom makeup', 'Look 6 – SFX makeup', 'Look 7 – Self grooming', 'Look 8 – Bridesmaid makeup', 'Look 9 – Goddess makeup']
         },
         {
             title: "Category 5: Business & Growth",
