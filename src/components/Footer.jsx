@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Phone, Mail, Youtube } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -13,11 +13,14 @@ const Footer = () => {
                         Establishing the pinnacle of luxury bridal makeup and professional beauty academy training.
                     </p>
                     <div className="flex gap-4">
-                        <a href="#" className="w-10 h-10 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-luxury-black transition-all">
+                        <a href="https://www.instagram.com/nithyamakeoverjn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-luxury-black transition-all">
                             <Instagram size={18} />
                         </a>
-                        <a href="#" className="w-10 h-10 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-luxury-black transition-all">
+                        <a href="https://www.facebook.com/profile.php?id=61574766068355" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-luxury-black transition-all">
                             <Facebook size={18} />
+                        </a>
+                        <a href="https://youtube.com/@nithyamakeoverandvlogger2883?si=w-Oej2DhRuy6Qw55" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-luxury-black transition-all">
+                            <Youtube size={18} />
                         </a>
                     </div>
                 </div>
@@ -52,11 +55,11 @@ const Footer = () => {
                     <ul className="flex flex-col gap-4 text-sm font-light text-luxury-nude/70">
                         <li className="flex gap-3 items-start">
                             <MapPin size={18} className="text-luxury-gold shrink-0 mt-0.5" />
-                            <span>123 Luxury Avenue, Elegance District, City, 10001</span>
+                            <span>Kavithalaya complex, New Bus stand Road, Salem, Tamil Nadu-636004</span>
                         </li>
                         <li className="flex gap-3 items-center">
                             <Phone size={18} className="text-luxury-gold shrink-0" />
-                            <span>+1 (234) 567-890</span>
+                            <span>+91 99765 08775</span>
                         </li>
                         <li className="flex gap-3 items-center">
                             <Mail size={18} className="text-luxury-gold shrink-0" />

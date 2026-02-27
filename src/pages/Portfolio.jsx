@@ -1,37 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FadeIn } from '../components/Animations.jsx';
+import { supabase } from '../lib/supabaseClient';
+import heroImage from '../assets/hero-hindu.png';
 
 const Portfolio = () => {
+    const [portfolioItems, setPortfolioItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const [activeTab, setActiveTab] = useState('All');
+    const [activeMobileItem, setActiveMobileItem] = useState(null);
+    const categories = ['All', 'Bridal', 'Reception', 'Portrait'];
 
-    const categories = ['All', 'Bridal Looks', 'Party Looks', 'Before & After', 'Student Work'];
+    useEffect(() => {
+        const fetchPortfolio = async () => {
+            setLoading(true);
+            const { data, error } = await supabase.from('portfolio').select('*').order('created_at', { ascending: false });
+            if (!error && data) {
+                setPortfolioItems(data);
+            }
+            setLoading(false);
+        };
+        fetchPortfolio();
+    }, []);
 
-    const images = [
-        { src: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop', category: 'Bridal Looks' },
-        { src: 'https://images.unsplash.com/photo-1512496015851-a1c8dcbc69cd?q=80&w=800&auto=format&fit=crop', category: 'Party Looks' },
-        { src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=800&auto=format&fit=crop', category: 'Bridal Looks' },
-        { src: 'https://images.unsplash.com/photo-1557205465-f3762edea6d3?q=80&w=800&auto=format&fit=crop', category: 'Student Work' },
-        { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=800&auto=format&fit=crop', category: 'Before & After' },
-        { src: 'https://images.unsplash.com/photo-1610030580105-3bb3a4a00508?q=80&w=800&auto=format&fit=crop', category: 'Party Looks' },
-        { src: 'https://images.unsplash.com/photo-1588665796280-9cc0c3e60dd9?q=80&w=800&auto=format&fit=crop', category: 'Bridal Looks' },
-        { src: 'https://images.unsplash.com/photo-1515378278280-c1e194f4c281?q=80&w=800&auto=format&fit=crop', category: 'Student Work' },
-        { src: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop', category: 'Before & After' },
-    ];
-
-    const filteredImages = activeTab === 'All'
-        ? images
-        : images.filter(img => img.category === activeTab);
+    const filteredItems = activeTab === 'All'
+        ? portfolioItems
+        : portfolioItems.filter(item => item.category === activeTab);
 
     return (
-        <div className="bg-[#0a0a0a] min-h-screen py-24 px-6">
-            <div className="container mx-auto">
-                <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <span className="text-luxury-gold text-sm tracking-[0.2em] uppercase mb-4 block">Visual Diary</span>
-                    <h1 className="text-5xl md:text-6xl font-serif text-luxury-nude mb-6">Our <span className="text-luxury-gold italic">Portfolio</span></h1>
-                    <p className="text-luxury-nude/70 font-light leading-relaxed mb-6">
-                        A curated collection of our finest transformations, showcasing our commitment to excellence, luxury, and detail.
-                    </p>
+        <div className="bg-[#0a0a0a] min-h-screen">
+            {/* Hero Section */}
+            <section className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-110px)] flex items-center justify-center overflow-hidden w-full">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={heroImage}
+                        alt="Portfolio Background"
+                        className="w-full h-full object-cover object-center"
+                    />
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/70 z-10"></div>
                 </div>
 
+                {/* Content */}
+                <div className="relative z-20 text-center px-6 max-w-3xl mx-auto flex flex-col items-center">
+                    <FadeIn direction="up">
+                        <span className="text-luxury-gold text-xs sm:text-sm tracking-[0.3em] font-medium uppercase mb-6 block">Visual Diary</span>
+                        <h1 className="text-5xl md:text-7xl font-serif text-luxury-nude tracking-widest uppercase mb-6 leading-tight">
+                            Portfolio
+                        </h1>
+                        <div className="w-16 h-[1px] bg-luxury-gold mx-auto justify-center"></div>
+                    </FadeIn>
+                </div>
+            </section>
+
+            {/* Portfolio Grid Section */}
+            <section className="py-24 px-4 sm:px-6 relative z-10 w-full max-w-7xl mx-auto">
                 {/* Filter Tabs */}
                 <div className="flex flex-wrap justify-center gap-4 mb-16">
                     {categories.map((cat, idx) => (
@@ -45,26 +69,49 @@ const Portfolio = () => {
                     ))}
                 </div>
 
-                {/* Masonry-style Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredImages.map((img, idx) => (
-                        <div key={idx} className="group relative overflow-hidden aspect-[4/5] bg-luxury-black">
-                            <img
-                                src={img.src}
-                                alt={`${img.category} Portfolio`}
-                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                            />
-
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-luxury-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                                <span className="text-luxury-gold uppercase tracking-[0.2em] text-sm border border-luxury-gold py-2 px-6">
-                                    {img.category}
-                                </span>
+                {/* Masonry-style Grid (1 col mobile, 2 col tablet, 3 col desktop) */}
+                {loading ? (
+                    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-8 mx-auto">
+                        {[1, 2, 3, 4, 5, 6].map((n) => (
+                            <div key={n} className="bg-[#080808] border border-luxury-gold/10 rounded-md mb-6 sm:mb-8 break-inside-avoid w-full h-[320px] sm:h-[400px] overflow-hidden shadow-lg animate-pulse inline-block">
+                                <div className="w-full h-full bg-white/5"></div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+                        ))}
+                    </div>
+                ) : filteredItems.length === 0 ? (
+                    <div className="text-center py-20 text-luxury-nude/50 font-light border border-luxury-gold/10 rounded-xl bg-[#080808]">
+                        <p>No portfolio images available in this category.</p>
+                    </div>
+                ) : (
+                    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-8 mx-auto">
+                        {filteredItems.map((item, idx) => (
+                            <div
+                                key={idx}
+                                onClick={() => setActiveMobileItem(activeMobileItem === idx ? null : idx)}
+                                className={`group relative overflow-hidden bg-[#080808] border border-luxury-gold/10 rounded-md mb-6 sm:mb-8 break-inside-avoid w-full h-[320px] sm:h-[400px] ${item.height} shadow-lg md:hover:shadow-[0_20px_40px_rgba(201,164,92,0.15)] transition-shadow duration-500 cursor-pointer text-left`}
+                            >
+                                <img
+                                    src={item.src}
+                                    alt={`${item.category} Portfolio`}
+                                    loading="lazy"
+                                    className={`w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 ${activeMobileItem === idx ? 'scale-105' : ''}`}
+                                />
+
+                                {/* Overlay tap on mobile, hover on desktop */}
+                                <div className={`absolute inset-0 transition-colors duration-500 z-10 flex flex-col items-center justify-center pointer-events-none md:bg-transparent ${activeMobileItem === idx ? 'bg-black/60' : 'bg-transparent'} md:group-hover:bg-black/60`}>
+                                    <div className={`transform transition-all duration-700 ease-out flex flex-col items-center md:opacity-0 md:translate-y-4 md:group-hover:translate-y-0 md:group-hover:opacity-100 ${activeMobileItem === idx ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                                        <span className="text-white uppercase tracking-[0.25em] font-serif text-lg md:text-xl mb-1 md:mb-2 drop-shadow-md">
+                                            {item.category}
+                                        </span>
+                                        {/* Animated Underline */}
+                                        <div className={`h-[1px] bg-luxury-gold transition-all duration-700 delay-100 ease-out md:w-0 md:group-hover:w-[50px] ${activeMobileItem === idx ? 'w-[50px]' : 'w-0'}`}></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
         </div>
     );
 };

@@ -8,6 +8,7 @@
   body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   body {
@@ -27,5 +28,23 @@
 @layer utilities {
   .text-shadow-gold {
     text-shadow: 0 2px 4px rgba(201, 164, 92, 0.3);
+  }
+
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-50%));
+    }
   }
 }
